@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Générateur de Titres YouTube</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9f9f9; padding: 2rem; }
+    h1 { color: #333; }
+    .container { max-width: 800px; margin: auto; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    input, select, textarea, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 6px; border: 1px solid #ccc; }
+    button { background-color: #007bff; color: white; cursor: pointer; }
+    button:hover { background-color: #0056b3; }
+    .result { background: #eef; padding: 1rem; border-radius: 8px; margin-top: 1rem; }
+    .title-box { margin-bottom: 1rem; padding: 10px; background: #fff; border: 1px solid #ddd; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 Générateur de Titres YouTube Optimisés</h1>
+    <label for="keyword">Mot-clé principal :</label>
+    <input type="text" id="keyword" placeholder="ex: FC Mobile, voyage à Dubaï...">
+
+    <label for="style">Style du titre :</label>
+    <select id="style">
+      <option value="persuasif">Persuasif</option>
+      <option value="émotif">Émotif</option>
+      <option value="mystérieux">Mystérieux</option>
+      <option value="drôle">Drôle</option>
+      <option value="éducatif">Éducatif</option>
+    </select>
+
+    <label for="comment">Commentaire d'abonné (optionnel) :</label>
+    <textarea id="comment" placeholder="Un commentaire inspirant à intégrer..."></textarea>
+
+    <button onclick="generateTitles()">Générer des Titres</button>
+
+    <div id="results" class="result" style="display:none">
+      <h2>✨ Titres suggérés</h2>
+      <div id="titleOutput"></div>
+    </div>
+  </div>
+
+  <script>
+    function generateTitles() {
+      const keyword = document.getElementById('keyword').value.trim();
+      const style = document.getElementById('style').value;
+      const comment = document.getElementById('comment').value.trim();
+
+      if (!keyword) {
+        alert("Veuillez entrer un mot-clé principal.");
+        return;
+      }
+
+      const titles = [
+        `Le secret ultime de ${keyword} révélé ! 🔥`,
+        `${keyword} : Ce que personne ne vous dit... 😱`,
+        `Top 5 des astuces pour ${keyword} en 2025 ! ✅`,
+        `Pourquoi ${keyword} change tout en 2025 ?`,
+        `${keyword} : Ce commentaire va vous étonner... "${comment || '...'}"`
+      ];
+
+      const titleOutput = document.getElementById('titleOutput');
+      titleOutput.innerHTML = '';
+      titles.forEach((title, index) => {
+        const div = document.createElement('div');
+        div.className = 'title-box';
+        div.innerHTML = `<strong>Titre ${index + 1} (${style})</strong><br>${title}`;
+        titleOutput.appendChild(div);
+      });
+
+      document.getElementById('results').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
